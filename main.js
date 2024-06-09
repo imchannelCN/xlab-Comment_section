@@ -101,7 +101,7 @@ function show_comments(comments)
         </div>
 
         <div class="buttonLine">
-            <button class="buttonStyle" id="delete${comment.ID}">删除</button>
+            <button class="buttonStyle" id="delete${comment.id}">删除</button>
         </div>
         `;
         div.appendChild(commentElement);
