@@ -23,6 +23,7 @@ var err error
 
 // 连接数据库
 func initSQL() {
+
 	//配置MySQL连接参数
 	host := viper.GetString(`mysql.url`)          //数据库地址，可以是Ip或者域名
 	username := viper.GetString(`mysql.username`) //账号
@@ -32,6 +33,7 @@ func initSQL() {
 	timeout := viper.GetString(`mysql.timeout`)   //连接超时，10秒
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True&loc=Local&timeout=%s", username, password, host, port, Dbname, timeout)
+	fmt.Println(dsn)
 
 	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
