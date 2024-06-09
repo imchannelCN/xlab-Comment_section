@@ -7,6 +7,7 @@ import (
 	"strconv"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -23,12 +24,12 @@ var err error
 // 连接数据库
 func initSQL() {
 	//配置MySQL连接参数
-	username := "root"        //账号
-	password := "123456"      //密码
-	host := "127.0.0.1"       //数据库地址，可以是Ip或者域名
-	port := 3306              //数据库端口
-	Dbname := "xlab_comments" //数据库名
-	timeout := "10s"          //连接超时，10秒
+	host := viper.GetString(`mysql.url`)          //数据库地址，可以是Ip或者域名
+	username := viper.GetString(`mysql.username`) //账号
+	password := viper.GetString(`mysql.password`) //密码
+	port := viper.GetInt(`mysql.port`)            //数据库端口
+	Dbname := viper.GetString(`mysql.Dbname`)     //数据库名
+	timeout := viper.GetString(`mysql.timeout`)   //连接超时，10秒
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True&loc=Local&timeout=%s", username, password, host, port, Dbname, timeout)
 
